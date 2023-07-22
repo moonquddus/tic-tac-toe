@@ -2,13 +2,18 @@ import { createBrowserRouter } from 'react-router-dom'
 import Menu from '../components/page/Menu/Menu'
 import Game from '../components/page/Game/Game'
 
+export enum PAGE_PATH {
+  MENU = '/',
+  GAME = '/game'
+}
+
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: PAGE_PATH.MENU,
     element: <Menu />,
   },
   {
-    path: '/game',
+    path: PAGE_PATH.GAME,
     element: <Game />,
   },
 ])

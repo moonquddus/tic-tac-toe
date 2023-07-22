@@ -1,7 +1,59 @@
+import { useNavigate } from 'react-router-dom'
+import { PAGE_PATH } from '../../../lib/router'
+import { MouseEventHandler } from 'react'
+import { useRecoilState } from 'recoil'
+import { variationState } from '../../../lib/atoms/variationState'
+import { winModeState } from '../../../lib/atoms/winModeState'
+import { gameModeState } from '../../../lib/atoms/gameModeState'
+
 function Menu() {
+  const navigate = useNavigate()
+
+  const [gameMode, setGameMode] = useRecoilState(gameModeState)
+  const [variation, setVariation] = useRecoilState(variationState)
+  const [winMode, setWinMode] = useRecoilState(winModeState)
+
+
+  const onNewGame: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault()
+    navigate(PAGE_PATH.GAME)
+  }
+
   return (
     <div>
-      Menu
+      Tic Tac Toe
+      <form>
+        <fieldset>
+          <legend>Game mode:</legend>
+          <label>
+            <input type='radio' name='gameMode' value='single-player' checked={gameMode === 'single-player'} onClick={() => setGameMode('single-player')} /> Single player (vs CPU)
+          </label>
+          <label>
+            <input type='radio' name='gameMode' value='multi-player' checked={gameMode === 'multi-player'} onClick={() => setGameMode('multi-player')} /> Multiplayer (2 players)
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Variation:</legend>
+          <label>
+            <input type='radio' name='variation' value='standard' checked={variation === 'standard'} onClick={() => setVariation('standard')} /> Standard
+          </label>
+          <label>
+            <input type='radio' name='variation' value='wild' checked={variation === 'wild'} onClick={() => setVariation('wild')} /> Wild
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Win conditions:</legend>
+          <label>
+            <input type='radio' name='winMode' value='standard' checked={winMode === 'standard'} onClick={() => setWinMode('standard')} /> Standard
+          </label>
+          <label>
+            <input type='radio' name='winMode' value='misere' checked={winMode === 'misere'} onClick={() => setWinMode('misere')} /> Misere
+          </label>
+        </fieldset>
+      </form>
+      <button onClick={onNewGame}>Start game</button>
     </div>
   )
 }

@@ -1,7 +1,10 @@
+import Grid from '../../ui/Grid/Grid'
+
 function Game() {
   return (
     <div>
-      Game
+      Lets Game It Out
+      <Grid />
     </div>
   )
 }
