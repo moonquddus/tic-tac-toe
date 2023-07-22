@@ -1,7 +1,7 @@
 import BaseGame from '../BaseGame/BaseGame'
-import { MouseEventHandler, useMemo } from 'react'
+import { MouseEventHandler, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { gameState } from '../../../lib/atoms/gameState'
 import { isOdd } from '../../../lib/utility/numberUtils'
 import GameHeader from '../GameHeader/GameHeader'
@@ -10,19 +10,13 @@ import { TIC_TAC_TOE_SYMBOL } from '../../../lib/model'
 function WildGame(){
   const navigate = useNavigate()
 
-  const [currentGameState, setGameState] = useRecoilState(gameState)
-  const { gameStatus, turn, selectedSymbol } = currentGameState
+  const currentGameState = useRecoilValue(gameState)
+  const { gameStatus, turn } = currentGameState
+  const [selectedSymbol, setSymbol] = useState<TIC_TAC_TOE_SYMBOL>(TIC_TAC_TOE_SYMBOL.NOUGHT)
 
   const currentPlayerTurn = useMemo(() => {
     return isOdd(turn) ? 1 : 2
   }, [turn])
-
-  const setSymbol = (symbol: TIC_TAC_TOE_SYMBOL): void => {
-    setGameState({
-      ...currentGameState,
-      selectedSymbol: symbol
-    })
-  }
 
   const onExitButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     // TODO (someday...): add a warning modal if you're about to leave in the middle of a game
@@ -47,7 +41,7 @@ function WildGame(){
                 type='radio' 
                 name='symbol' 
                 value={symbol} 
-                defaultChecked={selectedSymbol === symbol} 
+                defaultChecked={symbol === selectedSymbol} 
                 onClick={() => setSymbol(symbol)}
               /> {symbol}
             </label>
@@ -55,7 +49,7 @@ function WildGame(){
         </fieldset>
       </form>
 
-      <BaseGame />
+      <BaseGame symbol={selectedSymbol} />
 
       <button onClick={onExitButtonClick}>Exit game</button>
     </div>
