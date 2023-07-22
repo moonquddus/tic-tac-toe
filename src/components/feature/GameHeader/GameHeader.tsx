@@ -1,15 +1,9 @@
-import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { gameState } from '../../../lib/atoms/gameState'
-import { isOdd } from '../../../lib/utility/numberUtils'
 
 function GameHeader(){
   const currentGameState = useRecoilValue(gameState)
-  const { gameStatus, turn, winner } = currentGameState
-
-  const currentPlayerTurn = useMemo(() => {
-    return isOdd(turn) ? 1 : 2
-  }, [turn])
+  const { gameStatus, winner } = currentGameState
 
   return (
     <div>
@@ -21,10 +15,6 @@ function GameHeader(){
     
       {gameStatus === 'draw' && (
         <p>Draw!</p>
-      )}
-    
-      {gameStatus === 'active' && (
-        <p>Turn: Player {currentPlayerTurn}</p>
       )}
     </div>
   )

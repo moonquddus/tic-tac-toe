@@ -4,7 +4,6 @@ import { gridState } from '../../../lib/atoms/gridState'
 import { insertValueIntoGrid, isGridEmpty } from '../../../lib/utility/gridUtils'
 import { useEffect, useMemo } from 'react'
 import { isOdd } from '../../../lib/utility/numberUtils'
-import { TIC_TAC_TOE_SYMBOL } from '../../../lib/model'
 import { gameState } from '../../../lib/atoms/gameState'
 import { winModeState } from '../../../lib/atoms/winModeState'
 import { winModeMap } from '../../../lib/gameConfig'
@@ -12,7 +11,7 @@ import { winModeMap } from '../../../lib/gameConfig'
 function BaseGame() {
   const [grid, setGrid] = useRecoilState(gridState)
   const [currentGameState, setGameState] = useRecoilState(gameState)
-  const { turn, gameStatus } = currentGameState
+  const { turn, gameStatus, selectedSymbol } = currentGameState
   
   const winMode = useRecoilValue(winModeState)
   const hasGameBeenCompleted = winModeMap[winMode]
@@ -59,8 +58,7 @@ function BaseGame() {
 
   const playerTurnHandler = (x: number, y: number) => {
     if (gameStatus !== 'active') return
-    const symbol = currentPlayerTurn === 1 ? TIC_TAC_TOE_SYMBOL.NOUGHT : TIC_TAC_TOE_SYMBOL.CROSS
-    const newGrid = insertValueIntoGrid(grid, x, y, symbol)
+    const newGrid = insertValueIntoGrid(grid, x, y, selectedSymbol)
     setGrid(newGrid)
   }
 
