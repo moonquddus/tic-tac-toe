@@ -5,7 +5,7 @@ import { RecoilRoot } from 'recoil'
 
 function App() {
   return (
-    <div id='app'>
+    <div id='app' className={styles.app}>
       <RecoilRoot>
         <RouterProvider router={router} />
       </RecoilRoot>

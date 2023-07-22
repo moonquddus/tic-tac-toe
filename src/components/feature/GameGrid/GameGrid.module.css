@@ -1,0 +1,31 @@
+.grid {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #000;
+}
+
+.row {
+  display: flex;
+  border-bottom: solid 1px #000;
+}
+
+.row:last-of-type {
+  border-bottom: none;
+}
+
+.cell {
+  display: inline-flex;
+  flex: 1;
+  border-right: solid 1px #000;
+  aspect-ratio: 1 / 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell:last-of-type {
+  border-right: none;
+}
+
+.emptyCell {
+  cursor: pointer;
+}
