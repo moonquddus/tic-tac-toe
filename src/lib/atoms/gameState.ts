@@ -4,7 +4,7 @@ import { TIC_TAC_TOE_SYMBOL } from '../model'
 export type GameStateType = {
   turn: number
   selectedSymbol: TIC_TAC_TOE_SYMBOL
-  gameHasBeenWon: boolean
+  gameStatus: 'active' | 'victory' | 'draw'
 }
 
 export const GAME_STATE_ID = 'gameState'
@@ -14,6 +14,6 @@ export const gameState = atom<GameStateType>({
   default: {
     turn: 1,
     selectedSymbol: TIC_TAC_TOE_SYMBOL.NOUGHT,
-    gameHasBeenWon: false
+    gameStatus: 'active'
   }
 })

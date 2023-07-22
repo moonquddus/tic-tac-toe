@@ -1,18 +1,27 @@
 import { useNavigate } from 'react-router-dom'
 import { PAGE_PATH } from '../../../lib/router'
-import { MouseEventHandler } from 'react'
-import { useRecoilState } from 'recoil'
+import { MouseEventHandler, useEffect } from 'react'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { variationState } from '../../../lib/atoms/variationState'
 import { winModeState } from '../../../lib/atoms/winModeState'
 import { gameModeState } from '../../../lib/atoms/gameModeState'
+import { gridState } from '../../../lib/atoms/gridState'
+import { gameState } from '../../../lib/atoms/gameState'
 
 function Menu() {
   const navigate = useNavigate()
+
+  const resetGame = useResetRecoilState(gameState)
+  const resetGrid = useResetRecoilState(gridState)
 
   const [gameMode, setGameMode] = useRecoilState(gameModeState)
   const [variation, setVariation] = useRecoilState(variationState)
   const [winMode, setWinMode] = useRecoilState(winModeState)
 
+  useEffect(() => {
+    resetGame()
+    resetGrid()
+  }, [])
 
   const onNewGame: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault()
