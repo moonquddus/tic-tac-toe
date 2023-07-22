@@ -23,7 +23,7 @@ export function isGridEmpty(grid: GridType): boolean {
   return true
 }
 
-export function checkGameHasBeenWon(grid: GridType): boolean {
+export function hasLineBeenMade(grid: GridType): boolean {
   const size = grid.length
 
   // Check rows
