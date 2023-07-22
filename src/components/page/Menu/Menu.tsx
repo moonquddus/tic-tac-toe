@@ -23,11 +23,13 @@ function Menu() {
     resetGrid()
   }, [])
 
-  const onNewGame: MouseEventHandler<HTMLButtonElement> = (event) => {
+  const onNewGameClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault()
     navigate(PAGE_PATH.GAME)
   }
 
+  // I could make this all fancy, and generate this entire form from a config Map or something...
+  // But there is such a thing as over-engineering haha
   return (
     <div>
       Tic Tac Toe
@@ -35,34 +37,34 @@ function Menu() {
         <fieldset>
           <legend>Game mode:</legend>
           <label>
-            <input type='radio' name='gameMode' value='single-player' checked={gameMode === 'single-player'} onClick={() => setGameMode('single-player')} /> Single player (vs CPU)
+            <input type='radio' name='gameMode' value='single-player' defaultChecked={gameMode === 'single-player'} onClick={() => setGameMode('single-player')} /> Single player (vs CPU)
           </label>
           <label>
-            <input type='radio' name='gameMode' value='multi-player' checked={gameMode === 'multi-player'} onClick={() => setGameMode('multi-player')} /> Multiplayer (2 players)
+            <input type='radio' name='gameMode' value='multi-player' defaultChecked={gameMode === 'multi-player'} onClick={() => setGameMode('multi-player')} /> Multiplayer (2 players)
           </label>
         </fieldset>
 
         <fieldset>
           <legend>Variation:</legend>
           <label>
-            <input type='radio' name='variation' value='standard' checked={variation === 'standard'} onClick={() => setVariation('standard')} /> Standard
+            <input type='radio' name='variation' value='standard' defaultChecked={variation === 'standard'} onClick={() => setVariation('standard')} /> Standard
           </label>
           <label>
-            <input type='radio' name='variation' value='wild' checked={variation === 'wild'} onClick={() => setVariation('wild')} /> Wild
+            <input type='radio' name='variation' value='wild' defaultChecked={variation === 'wild'} onClick={() => setVariation('wild')} /> Wild
           </label>
         </fieldset>
 
         <fieldset>
           <legend>Win conditions:</legend>
           <label>
-            <input type='radio' name='winMode' value='standard' checked={winMode === 'standard'} onClick={() => setWinMode('standard')} /> Standard
+            <input type='radio' name='winMode' value='standard' defaultChecked={winMode === 'standard'} onClick={() => setWinMode('standard')} /> Standard
           </label>
           <label>
-            <input type='radio' name='winMode' value='misere' checked={winMode === 'misere'} onClick={() => setWinMode('misere')} /> Misere
+            <input type='radio' name='winMode' value='misere' defaultChecked={winMode === 'misere'} onClick={() => setWinMode('misere')} /> Misere
           </label>
         </fieldset>
       </form>
-      <button onClick={onNewGame}>Start game</button>
+      <button onClick={onNewGameClick}>Start game</button>
     </div>
   )
 }
