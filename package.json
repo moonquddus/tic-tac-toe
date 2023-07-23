@@ -1,6 +1,11 @@
 {
   "name": "tic-tac-toe",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": {
+    "name": "Moon Quddus",
+    "email": "moonquddus@gmail.com",
+    "url": "https://github.com/moonquddus"
+  },
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
