@@ -1,24 +1,35 @@
 import { GridType } from '../atoms/gridState'
-import { TIC_TAC_TOE_SYMBOL, TurnActionType } from '../model'
-import { cloneGrid, hasLineBeenMade } from './gridUtils'
+import { CompleteLinePayload, TIC_TAC_TOE_SYMBOL, TurnActionType } from '../model'
+import { cloneGrid, getCompleteLine } from './gridUtils'
 
 type WinConditionFunctionPayload = {
   grid: GridType
   currentPlayerTurn: 1 | 2
 }
 
-type WinConditionReturnType = 1 | 2 | null
+type WinConditionReturnType = null | {
+  winner: 1 | 2
+  completingLine: CompleteLinePayload
+}
 
 export function checkStandardWinCondition({grid, currentPlayerTurn}: WinConditionFunctionPayload): WinConditionReturnType {
-  if (!hasLineBeenMade(grid)) return null
+  const completingLine = getCompleteLine(grid)
+  if (completingLine === null) return completingLine
 
-  return currentPlayerTurn
+  return {
+    winner: currentPlayerTurn,
+    completingLine,
+  }
 }
 
 export function checkMisereWinCondition({grid, currentPlayerTurn}: WinConditionFunctionPayload): WinConditionReturnType {
-  if (!hasLineBeenMade(grid)) return null
+  const completingLine = getCompleteLine(grid)
+  if (completingLine === null) return completingLine
 
-  return currentPlayerTurn === 1 ? 2 : 1
+  return {
+    winner: currentPlayerTurn === 1 ? 2 : 1,
+    completingLine
+  }
 }
 
 export function findGameCompletingTurns(grid: GridType, availableSymbols: TIC_TAC_TOE_SYMBOL[]): TurnActionType[] {
@@ -34,7 +45,7 @@ export function findGameCompletingTurns(grid: GridType, availableSymbols: TIC_TA
         const newGrid = cloneGrid(grid)
         availableSymbols.forEach(symbol => {
           newGrid[row][col] = symbol
-          if (hasLineBeenMade(newGrid)){
+          if (getCompleteLine(newGrid) !== null){
             completingTurns.push([row, col, symbol])
           }
         })

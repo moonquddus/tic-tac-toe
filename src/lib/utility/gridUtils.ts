@@ -1,4 +1,5 @@
 import { GridType } from '../atoms/gridState'
+import { CompleteLinePayload } from '../model'
 
 export function cloneGrid(grid: GridType): GridType {
   // Spread only makes a shallow copy, so I have to do it the ol' fashioned way
@@ -16,7 +17,7 @@ export function isGridEmpty(grid: GridType): boolean {
   return true
 }
 
-export function hasLineBeenMade(grid: GridType): boolean {
+export function getCompleteLine(grid: GridType): CompleteLinePayload | null {
   const size = grid.length
 
   // Check rows
@@ -32,7 +33,7 @@ export function hasLineBeenMade(grid: GridType): boolean {
       }
     }
     if (isRowEqual) {
-      return true // X in a row
+      return {direction: 'row', position: row} // X in a row
     }
   }
 
@@ -49,7 +50,7 @@ export function hasLineBeenMade(grid: GridType): boolean {
       }
     }
     if (isColumnEqual) {
-      return true // X in a column
+      return {direction: 'col', position: col} // X in a column
     }
   }
 
@@ -66,7 +67,7 @@ export function hasLineBeenMade(grid: GridType): boolean {
       }
     }
     if (isDiagonalEqual) {
-      return true // X in the main diagonal
+      return {direction: 'diag'} // X in the main diagonal
     }
   }
 
@@ -80,11 +81,11 @@ export function hasLineBeenMade(grid: GridType): boolean {
       }
     }
     if (isDiagonalEqual) {
-      return true // X in the anti-diagonal
+      return {direction: 'anti-diag'} // X in the anti-diagonal
     }
   }
 
-  return false
+  return null
 }
 
 export function getAvailablePositions(grid: GridType) {

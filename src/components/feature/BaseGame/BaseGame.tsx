@@ -41,11 +41,13 @@ function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
   useEffect(() => {
     if (gridIsEmpty) return
 
-    const winner = hasGameBeenCompleted({grid, currentPlayerTurn})
-    if (winner){
+    const gameResults = hasGameBeenCompleted({grid, currentPlayerTurn})
+    if (gameResults !== null){
+      const {winner, completingLine} = gameResults
       updateGame({
         gameStatus: 'victory',
-        winner: winner,
+        winner,
+        completingLine,
       })
       return
     }

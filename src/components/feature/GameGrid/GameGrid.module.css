@@ -29,3 +29,7 @@
 .emptyCell {
   cursor: pointer;
 }
+
+.winningCell {
+  font-weight: 700;
+}
