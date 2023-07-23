@@ -40,7 +40,7 @@ function StandardGame(){
 
       <BaseGame symbol={symbol} onComputerTurn={() => makeComputerTurn()} />
 
-      <button onClick={onExitButtonClick}>Exit game</button>
+      <button onClick={onExitButtonClick}>Exit to menu</button>
     </div>
   )
 }

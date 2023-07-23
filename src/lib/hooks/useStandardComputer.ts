@@ -18,6 +18,7 @@ export function useStandardComputer(grid: GridType, availableSymbols: TIC_TAC_TO
     return getRandomEntryFromArray(ownWinningMoves)
   }
 
+  // Funny little side-effect - in wild mode, makeDefensiveMove will always return null...
   const makeDefensiveMove = (completingTurns: TurnActionType[]): TurnActionType | null => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const enemyWinningTurns = completingTurns.filter(([_row, _col, symbol]) => !availableSymbols.includes(symbol))

@@ -1,0 +1,30 @@
+.button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  color: var(--button-color, var(--color-black));
+  background: var(--button-background, var(--color-white));
+  border: solid 1px var(--button-border, var(--color-grey-1));
+  border-radius: var(--border-radius);
+  padding: 5px 15px;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+}
+
+.button:hover {
+  background: var(--button-background-hover, var(--button-background));
+}
+
+.button:focus,
+.button:focus-within,
+.button-active {
+  outline: solid 3px var(--color-black);
+}
+
+.button[data-variation=primary] {
+  --button-background: var(--color-green-1);
+  --button-background-hover: var(--color-green-2);
+  --button-color: var(--color-white);
+  --button-border-color: var(--color-grey-2);
+}

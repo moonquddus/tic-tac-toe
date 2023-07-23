@@ -22,7 +22,7 @@ function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
   const gameMode = useRecoilValue(gameModeState)
 
   const winMode = useRecoilValue(winModeState)
-  const hasGameBeenCompleted = winModeMap[winMode]
+  const hasGameBeenCompleted = winModeMap[winMode].validation
 
   useEffect(() => {
     if (turn > Math.pow(grid.length, 2) && gameStatus === 'active'){

@@ -2,12 +2,12 @@ import { GridType } from '../atoms/gridState'
 import { CompleteLinePayload, TIC_TAC_TOE_SYMBOL, TurnActionType } from '../model'
 import { cloneGrid, getCompleteLine } from './gridUtils'
 
-type WinConditionFunctionPayload = {
+export type WinConditionFunctionPayload = {
   grid: GridType
   currentPlayerTurn: 1 | 2
 }
 
-type WinConditionReturnType = null | {
+export type WinConditionReturnType = null | {
   winner: 1 | 2
   completingLine: CompleteLinePayload
 }

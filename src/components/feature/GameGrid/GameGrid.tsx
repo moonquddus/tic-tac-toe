@@ -51,8 +51,6 @@ function GameGrid({grid, onCellClick}: GameGridProps) {
       cellClickHandler(...args)
   }
 
-  console.log('WINNING LINE', JSON.stringify(winningCoordinates))
-
   return (
     <div className={styles.grid} role='grid' tabIndex={-1}>
       {grid.map((row, rowKey) => (

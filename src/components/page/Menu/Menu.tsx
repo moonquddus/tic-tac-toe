@@ -7,6 +7,9 @@ import { winModeState } from '../../../lib/atoms/winModeState'
 import { gameModeState } from '../../../lib/atoms/gameModeState'
 import { useGame } from '../../../lib/hooks/useGame'
 import { useGrid } from '../../../lib/hooks/useGrid'
+import { gameModeMap, variationMap, winModeMap } from '../../../lib/gameConfig'
+import styles from './Menu.module.css'
+import Button from '../../ui/Button/Button'
 
 function Menu() {
   const navigate = useNavigate()
@@ -28,44 +31,45 @@ function Menu() {
     navigate(PAGE_PATH.GAME)
   }
 
-  // I could make this all fancy, and generate this entire form from a config Map or something...
-  // But I don't have time, plus there is such a thing as over-engineering haha
+  // I could clean this up even more, there are still a few too many things hardcoded
+  // But I didn't want this to take too long, and this was a lower priority
   return (
     <div>
-      <h1>Tic Tac Toe</h1>
-      <sub>Moon Edition</sub>
+      <h1>Tic Tac Toe: Moon Edition</h1>
       <form>
-        <fieldset>
-          <legend>Game mode:</legend>
-          <label>
-            <input type='radio' name='gameMode' value='single-player' defaultChecked={gameMode === 'single-player'} onClick={() => setGameMode('single-player')} /> Single player (vs CPU)
-          </label>
-          <label>
-            <input type='radio' name='gameMode' value='multi-player' defaultChecked={gameMode === 'multi-player'} onClick={() => setGameMode('multi-player')} /> Multiplayer (2 players)
-          </label>
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.legend}>Game mode:</legend>
+          {Object.values(gameModeMap).map(configEntry => (
+            <label className={styles.label} key={`game-mode-label-${configEntry.id}`}>
+              <input className={styles.radio} type='radio' name='gameMode' value={configEntry.id} defaultChecked={gameMode === configEntry.id} onClick={() => setGameMode(configEntry.id)} /> {configEntry.title}
+            </label>
+          ))}
+          <p className={styles.description}>{gameModeMap[gameMode].description}</p>
         </fieldset>
 
-        <fieldset>
-          <legend>Variation:</legend>
-          <label>
-            <input type='radio' name='variation' value='standard' defaultChecked={variation === 'standard'} onClick={() => setVariation('standard')} /> Standard
-          </label>
-          <label>
-            <input type='radio' name='variation' value='wild' defaultChecked={variation === 'wild'} onClick={() => setVariation('wild')} /> Wild
-          </label>
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.legend}>Variation:</legend>
+          {Object.values(variationMap).map(configEntry => (
+            <label className={styles.label} key={`variation-label-${configEntry.id}`}>
+              <input className={styles.radio} type='radio' name='variation' value={configEntry.id} defaultChecked={variation === configEntry.id} onClick={() => setVariation(configEntry.id)} /> {configEntry.title}
+            </label>
+          ))}
+          <p className={styles.description}>{variationMap[variation].description}</p>
         </fieldset>
 
-        <fieldset>
-          <legend>Win conditions:</legend>
-          <label>
-            <input type='radio' name='winMode' value='standard' defaultChecked={winMode === 'standard'} onClick={() => setWinMode('standard')} /> Standard
-          </label>
-          <label>
-            <input type='radio' name='winMode' value='misere' defaultChecked={winMode === 'misere'} onClick={() => setWinMode('misere')} /> Misere
-          </label>
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.legend}>Win conditions:</legend>
+          {Object.values(winModeMap).map(configEntry => (
+            <label className={styles.label} key={`win-mode-label-${configEntry.id}`}>
+              <input className={styles.radio} type='radio' name='winMode' value={configEntry.id} defaultChecked={winMode === configEntry.id} onClick={() => setWinMode(configEntry.id)} /> {configEntry.title}
+            </label>
+          ))}
+          <p className={styles.description}>{winModeMap[winMode].description}</p>
         </fieldset>
       </form>
-      <button onClick={onNewGameClick}>Start game</button>
+      <div className={styles.formControls}>
+        <Button type='button' onClick={onNewGameClick}>Start game</Button>
+      </div>
     </div>
   )
 }

@@ -20,6 +20,7 @@
   aspect-ratio: 1 / 1;
   align-items: center;
   justify-content: center;
+  font-size: 4rem;
 }
 
 .cell:last-of-type {
@@ -31,5 +32,6 @@
 }
 
 .winningCell {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-green-1);
 }

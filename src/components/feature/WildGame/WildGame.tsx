@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil'
 import { gameState } from '../../../lib/atoms/gameState'
 import { isOdd } from '../../../lib/utility/numberUtils'
 import GameHeader from '../GameHeader/GameHeader'
-import { TIC_TAC_TOE_SYMBOL } from '../../../lib/model'
+import { TIC_TAC_TOE_SYMBOL, getAllSymbols } from '../../../lib/model'
 import { gridState } from '../../../lib/atoms/gridState'
 import { winModeState } from '../../../lib/atoms/winModeState'
 import { useComputerPlayer } from '../../../lib/hooks/useComputerPlayer'
@@ -22,7 +22,7 @@ function WildGame(){
     return isOdd(turn) ? 1 : 2
   }, [turn])
 
-  const makeComputerTurn = useComputerPlayer(grid, [TIC_TAC_TOE_SYMBOL.NOUGHT, TIC_TAC_TOE_SYMBOL.CROSS], winMode)
+  const makeComputerTurn = useComputerPlayer(grid, getAllSymbols(), winMode)
 
   const onExitButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     // TODO (someday...): add a warning modal if you're about to leave in the middle of a game
@@ -41,7 +41,7 @@ function WildGame(){
       <form>
         <fieldset>
           <legend>Symbol:</legend>
-          {[TIC_TAC_TOE_SYMBOL.NOUGHT, TIC_TAC_TOE_SYMBOL.CROSS].map(symbol => (
+          {getAllSymbols().map(symbol => (
             <label key={`symbol-label-${symbol}`}>
               <input 
                 type='radio' 
@@ -57,7 +57,7 @@ function WildGame(){
 
       <BaseGame symbol={selectedSymbol} onComputerTurn={() => makeComputerTurn()} />
 
-      <button onClick={onExitButtonClick}>Exit game</button>
+      <button onClick={onExitButtonClick}>Exit to menu</button>
     </div>
   )
 }

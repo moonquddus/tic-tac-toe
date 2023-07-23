@@ -4,7 +4,7 @@ import { variationMap } from '../../../lib/gameConfig'
 
 function Game() {
   const variation = useRecoilValue(variationState)
-  const GameComponent = variationMap[variation]
+  const GameComponent = variationMap[variation].component
 
   return (
     <GameComponent />
