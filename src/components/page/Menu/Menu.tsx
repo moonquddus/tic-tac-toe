@@ -32,7 +32,7 @@ function Menu() {
     navigate(PAGE_PATH.GAME)
   }
 
-  // I could clean this up even more, there are still a few too many things hardcoded
+  // I could clean this up even more, there's still a bit too much code here that can be abstracted into its own components
   // But I didn't want this to take too long, and this was a lower priority
   return (
     <div>

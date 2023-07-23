@@ -11,16 +11,20 @@ import { useComputerPlayer } from '../../../lib/hooks/useComputerPlayer'
 import GameFooter from '../GameFooter/GameFooter'
 import gameStyles from './WildGame.module.css'
 import formStyles from '../../../assets/styling/form.module.css'
+import { gameModeState } from '../../../lib/atoms/gameModeState'
+import { getPlayerName } from '../../../lib/utility/gameUtils'
 
 function WildGame(){
   const grid = useRecoilValue(gridState)
   const winMode = useRecoilValue(winModeState)
+  const gameMode = useRecoilValue(gameModeState)
   const { gameStatus, turn } = useRecoilValue(gameState)
   const [selectedSymbol, setSymbol] = useState<TIC_TAC_TOE_SYMBOL>(TIC_TAC_TOE_SYMBOL.NOUGHT)
 
   const currentPlayerTurn = useMemo(() => {
     return isOdd(turn) ? 1 : 2
   }, [turn])
+  const activePlayerName = getPlayerName(currentPlayerTurn, gameMode)
 
   const makeComputerTurn = useComputerPlayer(grid, getAllSymbols(), winMode)
 
@@ -28,7 +32,7 @@ function WildGame(){
     <div>
       <GameHeader>
         {gameStatus === 'active' && (
-          <p><strong>Turn:</strong> Player {currentPlayerTurn}</p>
+          <p><strong>Turn:</strong> {activePlayerName}</p>
         )}
 
         <form className={gameStyles.form}>

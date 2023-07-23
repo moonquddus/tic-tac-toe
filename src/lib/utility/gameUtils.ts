@@ -1,3 +1,4 @@
+import { GameModeType } from '../atoms/gameModeState'
 import { GridType } from '../atoms/gridState'
 import { CompleteLinePayload, TIC_TAC_TOE_SYMBOL, TurnActionType } from '../model'
 import { cloneGrid, getCompleteLine } from './gridUtils'
@@ -54,4 +55,10 @@ export function findGameCompletingTurns(grid: GridType, availableSymbols: TIC_TA
   }
 
   return completingTurns
+}
+
+export function getPlayerName(playerNumber: number, gameMode: GameModeType): string {
+  if (playerNumber === 1) return 'Player 1'
+  if (gameMode === 'multi-player') return 'Player 2'
+  return 'CPU'
 }

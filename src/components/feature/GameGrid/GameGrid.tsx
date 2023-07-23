@@ -21,9 +21,9 @@ function GameGrid({grid, onCellClick}: GameGridProps) {
     case 'col':
       return grid.map((_, index) => ([index, completingLine.position]))
     case 'diag':
-      return [[0,0], [1,1], [2,2]]
+      return grid.map((_, index) => ([index, index]))
     case 'anti-diag':
-      return [[0, 2], [1,1], [2,0]]
+      return grid.map((_, index) => ([index, (grid.length - 1) - index]))
     default:
       return []
     }

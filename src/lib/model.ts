@@ -15,3 +15,5 @@ export type CompleteLinePayload = {
   direction: 'row' | 'col' | 'diag' | 'anti-diag'
   position?: number
 }
+
+export type ArrayOfSize<T, N extends number> = [T, ...T[]] & { length: N }
