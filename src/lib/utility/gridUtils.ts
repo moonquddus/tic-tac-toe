@@ -1,12 +1,16 @@
 import { GridCellType, GridType } from '../atoms/gridState'
 
+export function cloneGrid(grid: GridType): GridType {
+  // Spread only makes a shallow copy, so I have to do it the ol' fashioned way
+  return JSON.parse(JSON.stringify(grid))
+}
+
 export function insertValueIntoGrid(grid: GridType, row: number, col: number, value: GridCellType): GridType {
   if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) {
     throw new Error('Invalid coordinates. Out of bounds.')
   }
 
-  // Spread only makes a shallow copy, so I have to do it the ol' fashioned way
-  const newGrid: GridType = JSON.parse(JSON.stringify(grid))
+  const newGrid = cloneGrid(grid)
 
   newGrid[row][col] = value
   return newGrid
@@ -92,4 +96,16 @@ export function hasLineBeenMade(grid: GridType): boolean {
   }
 
   return false
+}
+
+export function getAvailablePositions(grid: GridType) {
+  const availablePositions = []
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[row].length; col++) {
+      if (grid[row][col] === null) {
+        availablePositions.push({ row, col })
+      }
+    }
+  }
+  return availablePositions
 }

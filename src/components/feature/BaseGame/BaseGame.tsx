@@ -7,17 +7,21 @@ import { isOdd } from '../../../lib/utility/numberUtils'
 import { gameState } from '../../../lib/atoms/gameState'
 import { winModeState } from '../../../lib/atoms/winModeState'
 import { winModeMap } from '../../../lib/gameConfig'
-import { TIC_TAC_TOE_SYMBOL } from '../../../lib/model'
+import { TIC_TAC_TOE_SYMBOL, TurnActionType } from '../../../lib/model'
+import { gameModeState } from '../../../lib/atoms/gameModeState'
 
 interface BaseGameProps {
   symbol: TIC_TAC_TOE_SYMBOL
+  onComputerTurn: () => TurnActionType
 }
 
-function BaseGame({symbol}: BaseGameProps) {
+function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
   const [grid, setGrid] = useRecoilState(gridState)
   const [currentGameState, setGameState] = useRecoilState(gameState)
   const { turn, gameStatus } = currentGameState
   
+  const gameMode = useRecoilValue(gameModeState)
+
   const winMode = useRecoilValue(winModeState)
   const hasGameBeenCompleted = winModeMap[winMode]
 
@@ -27,11 +31,18 @@ function BaseGame({symbol}: BaseGameProps) {
   }, [grid, turn])
 
   useEffect(() => {
-    if (turn > 9 && gameStatus === 'active')
+    if (turn > 9 && gameStatus === 'active'){
       setGameState({
         ...currentGameState,
         gameStatus: 'draw'
       })
+      return
+    }
+
+    if (gameStatus === 'active' && gameMode === 'single-player' && currentPlayerTurn === 2){
+      const [row, col, selectedSymbol] = onComputerTurn()
+      completeTurn(row, col, selectedSymbol)
+    }
   }, [turn])
 
   useEffect(() => {
@@ -61,14 +72,14 @@ function BaseGame({symbol}: BaseGameProps) {
     })
   }
 
-  const playerTurnHandler = (x: number, y: number) => {
+  const completeTurn = (x: number, y: number, selectedSymbol = symbol) => {
     if (gameStatus !== 'active') return
-    const newGrid = insertValueIntoGrid(grid, x, y, symbol)
+    const newGrid = insertValueIntoGrid(grid, x, y, selectedSymbol)
     setGrid(newGrid)
   }
 
   return (
-    <GameGrid grid={grid} onCellClick={playerTurnHandler} />
+    <GameGrid grid={grid} onCellClick={completeTurn} />
   )
 }
 

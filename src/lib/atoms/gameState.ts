@@ -2,7 +2,7 @@ import { atom } from 'recoil'
 
 export type GameStateType = {
   turn: number
-  gameStatus: 'active' | 'victory' | 'draw'
+  gameStatus: 'active' | 'waiting' | 'victory' | 'draw'
   winner: 1 | 2 | null
 }
 

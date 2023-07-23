@@ -6,10 +6,15 @@ import { gameState } from '../../../lib/atoms/gameState'
 import { isOdd } from '../../../lib/utility/numberUtils'
 import GameHeader from '../GameHeader/GameHeader'
 import { TIC_TAC_TOE_SYMBOL } from '../../../lib/model'
+import { gridState } from '../../../lib/atoms/gridState'
+import { winModeState } from '../../../lib/atoms/winModeState'
+import { useComputerPlayer } from '../../../lib/hooks/useComputerPlayer'
 
 function WildGame(){
   const navigate = useNavigate()
 
+  const grid = useRecoilValue(gridState)
+  const winMode = useRecoilValue(winModeState)
   const currentGameState = useRecoilValue(gameState)
   const { gameStatus, turn } = currentGameState
   const [selectedSymbol, setSymbol] = useState<TIC_TAC_TOE_SYMBOL>(TIC_TAC_TOE_SYMBOL.NOUGHT)
@@ -17,6 +22,8 @@ function WildGame(){
   const currentPlayerTurn = useMemo(() => {
     return isOdd(turn) ? 1 : 2
   }, [turn])
+
+  const makeComputerTurn = useComputerPlayer(grid, [TIC_TAC_TOE_SYMBOL.NOUGHT, TIC_TAC_TOE_SYMBOL.CROSS], winMode)
 
   const onExitButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     // TODO (someday...): add a warning modal if you're about to leave in the middle of a game
@@ -49,7 +56,7 @@ function WildGame(){
         </fieldset>
       </form>
 
-      <BaseGame symbol={selectedSymbol} />
+      <BaseGame symbol={selectedSymbol} onComputerTurn={() => makeComputerTurn()} />
 
       <button onClick={onExitButtonClick}>Exit game</button>
     </div>
