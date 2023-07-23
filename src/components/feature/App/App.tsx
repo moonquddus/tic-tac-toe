@@ -5,11 +5,11 @@ import { RecoilRoot } from 'recoil'
 
 function App() {
   return (
-    <div id='app' className={styles.app}>
+    <main id='app' className={styles.app}>
       <RecoilRoot>
         <RouterProvider router={router} />
       </RecoilRoot>
-    </div>
+    </main>
   )
 }
 

@@ -32,7 +32,8 @@ function Menu() {
   // But there is such a thing as over-engineering haha
   return (
     <div>
-      Tic Tac Toe
+      <h1>Tic Tac Toe</h1>
+      <sub>Moon Edition</sub>
       <form>
         <fieldset>
           <legend>Game mode:</legend>
