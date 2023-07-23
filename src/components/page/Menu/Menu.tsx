@@ -59,7 +59,7 @@ function Menu() {
         </fieldset>
 
         <fieldset className={formStyles.fieldset}>
-          <legend className={formStyles.legend}>Win conditions:</legend>
+          <legend className={formStyles.legend}>Win condition:</legend>
           {Object.values(winModeMap).map(configEntry => (
             <label className={formStyles.label} key={`win-mode-label-${configEntry.id}`}>
               <input className={formStyles.radio} type='radio' name='winMode' value={configEntry.id} defaultChecked={winMode === configEntry.id} onClick={() => setWinMode(configEntry.id)} /> {configEntry.title}
