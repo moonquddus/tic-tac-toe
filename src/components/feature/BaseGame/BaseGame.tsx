@@ -1,14 +1,13 @@
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import GameGrid from '../GameGrid/GameGrid'
-import { gridState } from '../../../lib/atoms/gridState'
-import { insertValueIntoGrid, isGridEmpty } from '../../../lib/utility/gridUtils'
 import { useEffect, useMemo } from 'react'
 import { isOdd } from '../../../lib/utility/numberUtils'
-import { gameState } from '../../../lib/atoms/gameState'
 import { winModeState } from '../../../lib/atoms/winModeState'
 import { winModeMap } from '../../../lib/gameConfig'
 import { TIC_TAC_TOE_SYMBOL, TurnActionType } from '../../../lib/model'
 import { gameModeState } from '../../../lib/atoms/gameModeState'
+import { useGrid } from '../../../lib/hooks/useGrid'
+import { useGame } from '../../../lib/hooks/useGame'
 
 interface BaseGameProps {
   symbol: TIC_TAC_TOE_SYMBOL
@@ -16,24 +15,18 @@ interface BaseGameProps {
 }
 
 function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
-  const [grid, setGrid] = useRecoilState(gridState)
-  const [currentGameState, setGameState] = useRecoilState(gameState)
-  const { turn, gameStatus } = currentGameState
-  
+  const { grid, addToGrid, gridIsEmpty } = useGrid()
+  const { gameState, updateGame } = useGame()
+  const { turn, gameStatus } = gameState
+
   const gameMode = useRecoilValue(gameModeState)
 
   const winMode = useRecoilValue(winModeState)
   const hasGameBeenCompleted = winModeMap[winMode]
 
-  const gridIsEmpty = useMemo(() => {
-    if (turn > 1) return false
-    return isGridEmpty(grid)
-  }, [grid, turn])
-
   useEffect(() => {
     if (turn > Math.pow(grid.length, 2) && gameStatus === 'active'){
-      setGameState({
-        ...currentGameState,
+      updateGame({
         gameStatus: 'draw'
       })
       return
@@ -50,8 +43,7 @@ function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
 
     const winner = hasGameBeenCompleted({grid, currentPlayerTurn})
     if (winner){
-      setGameState({
-        ...currentGameState,
+      updateGame({
         gameStatus: 'victory',
         winner: winner,
       })
@@ -66,16 +58,14 @@ function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
   }, [turn])
 
   const nextTurn = () => {
-    setGameState({
-      ...currentGameState,
+    updateGame({
       turn: turn + 1,
     })
   }
 
   const completeTurn = (x: number, y: number, selectedSymbol = symbol) => {
     if (gameStatus !== 'active') return
-    const newGrid = insertValueIntoGrid(grid, x, y, selectedSymbol)
-    setGrid(newGrid)
+    addToGrid(x, y, selectedSymbol)
   }
 
   return (

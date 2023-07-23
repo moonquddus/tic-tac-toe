@@ -15,8 +15,7 @@ function StandardGame(){
 
   const grid = useRecoilValue(gridState)
   const winMode = useRecoilValue(winModeState)
-  const currentGameState = useRecoilValue(gameState)
-  const { gameStatus, turn } = currentGameState
+  const { gameStatus, turn } = useRecoilValue(gameState)
 
   const currentPlayerTurn = isOdd(turn) ? 1 : 2
   const symbol = currentPlayerTurn === 1 ? TIC_TAC_TOE_SYMBOL.NOUGHT : TIC_TAC_TOE_SYMBOL.CROSS

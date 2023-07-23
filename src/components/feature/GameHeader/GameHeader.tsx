@@ -2,8 +2,7 @@ import { useRecoilValue } from 'recoil'
 import { gameState } from '../../../lib/atoms/gameState'
 
 function GameHeader(){
-  const currentGameState = useRecoilValue(gameState)
-  const { gameStatus, winner } = currentGameState
+  const { gameStatus, winner } = useRecoilValue(gameState)
 
   return (
     <div>

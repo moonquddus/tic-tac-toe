@@ -1,18 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 import { PAGE_PATH } from '../../../lib/router'
 import { MouseEventHandler, useEffect } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { variationState } from '../../../lib/atoms/variationState'
 import { winModeState } from '../../../lib/atoms/winModeState'
 import { gameModeState } from '../../../lib/atoms/gameModeState'
-import { gridState } from '../../../lib/atoms/gridState'
-import { gameState } from '../../../lib/atoms/gameState'
+import { useGame } from '../../../lib/hooks/useGame'
+import { useGrid } from '../../../lib/hooks/useGrid'
 
 function Menu() {
   const navigate = useNavigate()
 
-  const resetGame = useResetRecoilState(gameState)
-  const resetGrid = useResetRecoilState(gridState)
+  const { resetGame } = useGame()
+  const { resetGrid } = useGrid()
 
   const [gameMode, setGameMode] = useRecoilState(gameModeState)
   const [variation, setVariation] = useRecoilState(variationState)
@@ -29,7 +29,7 @@ function Menu() {
   }
 
   // I could make this all fancy, and generate this entire form from a config Map or something...
-  // But there is such a thing as over-engineering haha
+  // But I don't have time, plus there is such a thing as over-engineering haha
   return (
     <div>
       <h1>Tic Tac Toe</h1>

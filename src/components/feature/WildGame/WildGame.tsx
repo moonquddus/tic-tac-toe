@@ -15,8 +15,7 @@ function WildGame(){
 
   const grid = useRecoilValue(gridState)
   const winMode = useRecoilValue(winModeState)
-  const currentGameState = useRecoilValue(gameState)
-  const { gameStatus, turn } = currentGameState
+  const { gameStatus, turn } = useRecoilValue(gameState)
   const [selectedSymbol, setSymbol] = useState<TIC_TAC_TOE_SYMBOL>(TIC_TAC_TOE_SYMBOL.NOUGHT)
 
   const currentPlayerTurn = useMemo(() => {
