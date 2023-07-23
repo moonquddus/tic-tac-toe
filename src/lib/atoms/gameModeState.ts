@@ -9,5 +9,5 @@ export const GAMEMODE_STATE_ID = 'gameModeState'
 
 export const gameModeState = atom<GameModeType>({
   key: GAMEMODE_STATE_ID,
-  default: 'multi-player'
+  default: 'single-player'
 })
