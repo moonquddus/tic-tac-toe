@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   padding: 5px 0 0;
   margin: 15px 0;
+  align-items: center;
 }
 
 .dashboard p {

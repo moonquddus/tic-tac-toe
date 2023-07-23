@@ -14,7 +14,7 @@ function GameHeader({children}: PropsWithChildren){
 
       {gameStatus === 'active' && (
         <aside className={styles.dashboard}>
-          <p><strong>Win condition:</strong> {winMode}</p>
+          <p><strong>Win:</strong> {winMode}</p>
           {children}
         </aside>
       )}
