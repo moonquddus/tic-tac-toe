@@ -31,7 +31,7 @@ function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
   }, [grid, turn])
 
   useEffect(() => {
-    if (turn > 9 && gameStatus === 'active'){
+    if (turn > Math.pow(grid.length, 2) && gameStatus === 'active'){
       setGameState({
         ...currentGameState,
         gameStatus: 'draw'

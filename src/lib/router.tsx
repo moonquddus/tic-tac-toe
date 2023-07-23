@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createMemoryRouter } from 'react-router-dom'
 import Menu from '../components/page/Menu/Menu'
 import Game from '../components/page/Game/Game'
 
@@ -7,7 +7,7 @@ export enum PAGE_PATH {
   GAME = '/game'
 }
 
-export const router = createBrowserRouter([
+export const router = createMemoryRouter([
   {
     path: PAGE_PATH.MENU,
     element: <Menu />,
