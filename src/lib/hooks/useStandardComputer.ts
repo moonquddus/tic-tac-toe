@@ -12,14 +12,14 @@ export function useStandardComputer(grid: GridType, availableSymbols: TIC_TAC_TO
   }
 
   const makeWinningMove = (completingTurns: TurnActionType[]): TurnActionType | null => {
-    console.log('AVAILABLE SYMBOLS', availableSymbols)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const ownWinningMoves = completingTurns.filter(([_row, _col, symbol]) => availableSymbols.includes(symbol))
-    console.log('OWN WINNING MOVES', ownWinningMoves)
     if (ownWinningMoves.length === 0) return null
     return getRandomEntryFromArray(ownWinningMoves)
   }
 
   const makeDefensiveMove = (completingTurns: TurnActionType[]): TurnActionType | null => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const enemyWinningTurns = completingTurns.filter(([_row, _col, symbol]) => !availableSymbols.includes(symbol))
     if (enemyWinningTurns.length === 0) return null
 
