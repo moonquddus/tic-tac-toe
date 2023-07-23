@@ -8,7 +8,8 @@ import { gameModeState } from '../../../lib/atoms/gameModeState'
 import { useGame } from '../../../lib/hooks/useGame'
 import { useGrid } from '../../../lib/hooks/useGrid'
 import { gameModeMap, variationMap, winModeMap } from '../../../lib/gameConfig'
-import styles from './Menu.module.css'
+import menuStyles from './Menu.module.css'
+import formStyles from '../../../assets/styling/form.module.css'
 import Button from '../../ui/Button/Button'
 
 function Menu() {
@@ -37,37 +38,37 @@ function Menu() {
     <div>
       <h1>Tic Tac Toe: Moon Edition</h1>
       <form>
-        <fieldset className={styles.fieldset}>
-          <legend className={styles.legend}>Game mode:</legend>
+        <fieldset className={formStyles.fieldset}>
+          <legend className={formStyles.legend}>Game mode:</legend>
           {Object.values(gameModeMap).map(configEntry => (
-            <label className={styles.label} key={`game-mode-label-${configEntry.id}`}>
-              <input className={styles.radio} type='radio' name='gameMode' value={configEntry.id} defaultChecked={gameMode === configEntry.id} onClick={() => setGameMode(configEntry.id)} /> {configEntry.title}
+            <label className={formStyles.label} key={`game-mode-label-${configEntry.id}`}>
+              <input className={formStyles.radio} type='radio' name='gameMode' value={configEntry.id} defaultChecked={gameMode === configEntry.id} onClick={() => setGameMode(configEntry.id)} /> {configEntry.title}
             </label>
           ))}
-          <p className={styles.description}>{gameModeMap[gameMode].description}</p>
+          <p className={menuStyles.description}>{gameModeMap[gameMode].description}</p>
         </fieldset>
 
-        <fieldset className={styles.fieldset}>
-          <legend className={styles.legend}>Variation:</legend>
+        <fieldset className={formStyles.fieldset}>
+          <legend className={formStyles.legend}>Variation:</legend>
           {Object.values(variationMap).map(configEntry => (
-            <label className={styles.label} key={`variation-label-${configEntry.id}`}>
-              <input className={styles.radio} type='radio' name='variation' value={configEntry.id} defaultChecked={variation === configEntry.id} onClick={() => setVariation(configEntry.id)} /> {configEntry.title}
+            <label className={formStyles.label} key={`variation-label-${configEntry.id}`}>
+              <input className={formStyles.radio} type='radio' name='variation' value={configEntry.id} defaultChecked={variation === configEntry.id} onClick={() => setVariation(configEntry.id)} /> {configEntry.title}
             </label>
           ))}
-          <p className={styles.description}>{variationMap[variation].description}</p>
+          <p className={menuStyles.description}>{variationMap[variation].description}</p>
         </fieldset>
 
-        <fieldset className={styles.fieldset}>
-          <legend className={styles.legend}>Win conditions:</legend>
+        <fieldset className={formStyles.fieldset}>
+          <legend className={formStyles.legend}>Win conditions:</legend>
           {Object.values(winModeMap).map(configEntry => (
-            <label className={styles.label} key={`win-mode-label-${configEntry.id}`}>
-              <input className={styles.radio} type='radio' name='winMode' value={configEntry.id} defaultChecked={winMode === configEntry.id} onClick={() => setWinMode(configEntry.id)} /> {configEntry.title}
+            <label className={formStyles.label} key={`win-mode-label-${configEntry.id}`}>
+              <input className={formStyles.radio} type='radio' name='winMode' value={configEntry.id} defaultChecked={winMode === configEntry.id} onClick={() => setWinMode(configEntry.id)} /> {configEntry.title}
             </label>
           ))}
-          <p className={styles.description}>{winModeMap[winMode].description}</p>
+          <p className={menuStyles.description}>{winModeMap[winMode].description}</p>
         </fieldset>
       </form>
-      <div className={styles.formControls}>
+      <div className={menuStyles.formControls}>
         <Button type='button' onClick={onNewGameClick}>Start game</Button>
       </div>
     </div>

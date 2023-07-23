@@ -1,0 +1,19 @@
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 15px 0;
+  margin: 15px 0;
+}
+
+.dashboard p {
+  flex-basis: auto;
+  width: auto;
+  margin: 0 auto;
+  padding: 5px 5px;
+  
+}
+
+.result {
+  font-size: 1.5rem;
+  text-align: center;
+}

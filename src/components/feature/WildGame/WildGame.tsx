@@ -1,6 +1,5 @@
 import BaseGame from '../BaseGame/BaseGame'
-import { MouseEventHandler, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useMemo, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { gameState } from '../../../lib/atoms/gameState'
 import { isOdd } from '../../../lib/utility/numberUtils'
@@ -9,10 +8,11 @@ import { TIC_TAC_TOE_SYMBOL, getAllSymbols } from '../../../lib/model'
 import { gridState } from '../../../lib/atoms/gridState'
 import { winModeState } from '../../../lib/atoms/winModeState'
 import { useComputerPlayer } from '../../../lib/hooks/useComputerPlayer'
+import GameFooter from '../GameFooter/GameFooter'
+import gameStyles from './WildGame.module.css'
+import formStyles from '../../../assets/styling/form.module.css'
 
 function WildGame(){
-  const navigate = useNavigate()
-
   const grid = useRecoilValue(gridState)
   const winMode = useRecoilValue(winModeState)
   const { gameStatus, turn } = useRecoilValue(gameState)
@@ -24,40 +24,36 @@ function WildGame(){
 
   const makeComputerTurn = useComputerPlayer(grid, getAllSymbols(), winMode)
 
-  const onExitButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
-    // TODO (someday...): add a warning modal if you're about to leave in the middle of a game
-    event.preventDefault()
-    navigate('/')
-  }
-
   return (
     <div>
-      <GameHeader />
+      <GameHeader>
+        {gameStatus === 'active' && (
+          <p><strong>Turn:</strong> Player {currentPlayerTurn}</p>
+        )}
 
-      {gameStatus === 'active' && (
-        <p>Turn: Player {currentPlayerTurn}</p>
-      )}
+        <form className={gameStyles.form}>
+          <fieldset className={formStyles.fieldset}>
+            <legend className={formStyles.legend}>Choose a symbol:</legend>
+            {getAllSymbols().map(symbol => (
+              <label className={formStyles.label} key={`symbol-label-${symbol}`}>
+                <input
+                  className={formStyles.radio}
+                  type='radio' 
+                  name='symbol' 
+                  value={symbol} 
+                  defaultChecked={symbol === selectedSymbol} 
+                  onClick={() => setSymbol(symbol)}
+                /> {symbol}
+              </label>
+            ))}
+          </fieldset>
+        </form>
+      </GameHeader>
 
-      <form>
-        <fieldset>
-          <legend>Symbol:</legend>
-          {getAllSymbols().map(symbol => (
-            <label key={`symbol-label-${symbol}`}>
-              <input 
-                type='radio' 
-                name='symbol' 
-                value={symbol} 
-                defaultChecked={symbol === selectedSymbol} 
-                onClick={() => setSymbol(symbol)}
-              /> {symbol}
-            </label>
-          ))}
-        </fieldset>
-      </form>
 
       <BaseGame symbol={selectedSymbol} onComputerTurn={() => makeComputerTurn()} />
 
-      <button onClick={onExitButtonClick}>Exit to menu</button>
+      <GameFooter />
     </div>
   )
 }

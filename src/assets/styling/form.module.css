@@ -1,0 +1,63 @@
+.fieldset {
+  margin: 0 0 15px;
+  padding: 0 0 15px;
+  border: none;
+  border-bottom: solid 1px var(--color-grey-2); 
+}
+
+.fieldset:last-of-type {
+  border-bottom: none;
+}
+
+.legend {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  padding: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  height: auto;
+  margin: 0 0 15px;
+}
+
+.label {
+  font-size: 1.2rem;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--color-grey-1);
+  border: solid 1px var(--color-grey-2);
+  border-right: none;
+  padding: 5px 15px;
+}
+
+.label:hover {
+  background: var(--color-grey-2);
+}
+
+.label:focus,
+.label:focus-within,
+.label:active {
+  outline: solid 3px var(--color-black);
+}
+
+.label:first-of-type {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.label:last-of-type {
+  border-right: solid 1px var(--color-grey-2);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.label:has(input:checked) {
+  cursor: default;
+  background: var(--color-green-1);
+  color: var(--color-white);
+}
+
+.radio {
+  position: absolute;
+  top: -100000px;
+  right: -100000px;
+}

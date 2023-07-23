@@ -1,6 +1,4 @@
 import BaseGame from '../BaseGame/BaseGame'
-import { MouseEventHandler } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { gameState } from '../../../lib/atoms/gameState'
 import { isOdd } from '../../../lib/utility/numberUtils'
@@ -9,10 +7,9 @@ import GameHeader from '../GameHeader/GameHeader'
 import { useComputerPlayer } from '../../../lib/hooks/useComputerPlayer'
 import { gridState } from '../../../lib/atoms/gridState'
 import { winModeState } from '../../../lib/atoms/winModeState'
+import GameFooter from '../GameFooter/GameFooter'
 
 function StandardGame(){
-  const navigate = useNavigate()
-
   const grid = useRecoilValue(gridState)
   const winMode = useRecoilValue(winModeState)
   const { gameStatus, turn } = useRecoilValue(gameState)
@@ -22,25 +19,20 @@ function StandardGame(){
 
   const makeComputerTurn = useComputerPlayer(grid, [symbol], winMode)
 
-  const onExitButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
-    // TODO (someday...): add a warning modal if you're about to leave in the middle of a game
-    event.preventDefault()
-    navigate('/')
-  }
-
   return (
     <div>
-      <GameHeader />
-      {gameStatus === 'active' && (
-        <>
-          <p>Turn: Player {currentPlayerTurn}</p>
-          <p>Symbol: {symbol}</p>
-        </>
-      )}
+      <GameHeader>
+        {gameStatus === 'active' && (
+          <>
+            <p><strong>Turn:</strong> Player {currentPlayerTurn}</p>
+            <p><strong>Symbol:</strong> {symbol}</p>
+          </>
+        )}
+      </GameHeader>
 
       <BaseGame symbol={symbol} onComputerTurn={() => makeComputerTurn()} />
 
-      <button onClick={onExitButtonClick}>Exit to menu</button>
+      <GameFooter />
     </div>
   )
 }

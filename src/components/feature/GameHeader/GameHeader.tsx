@@ -1,21 +1,32 @@
 import { useRecoilValue } from 'recoil'
 import { gameState } from '../../../lib/atoms/gameState'
+import { PropsWithChildren } from 'react'
+import { winModeState } from '../../../lib/atoms/winModeState'
+import styles from './GameHeader.module.css'
 
-function GameHeader(){
+function GameHeader({children}: PropsWithChildren){
   const { gameStatus, winner } = useRecoilValue(gameState)
+  const winMode = useRecoilValue(winModeState)
 
   return (
-    <div>
+    <header>
       <h1>Lets Tic Tac Toe it out</h1>
 
+      {gameStatus === 'active' && (
+        <aside className={styles.dashboard}>
+          <p><strong>Win condition:</strong> {winMode}</p>
+          {children}
+        </aside>
+      )}
+
       {gameStatus === 'victory' && (
-        <p>Player {winner} wins!</p>  
+        <p className={styles.result}>Player {winner} wins!</p>  
       )}
     
       {gameStatus === 'draw' && (
-        <p>Draw!</p>
+        <p className={styles.result}>Draw!</p>
       )}
-    </div>
+    </header>
   )
 }
 

@@ -26,5 +26,12 @@
   --button-background: var(--color-green-1);
   --button-background-hover: var(--color-green-2);
   --button-color: var(--color-white);
-  --button-border-color: var(--color-grey-2);
+  --button-border: var(--color-grey-2);
+}
+
+.button[data-variation=secondary] {
+  --button-background: var(--color-grey-1);
+  --button-background-hover: var(--color-grey-2);
+  --button-color: var(--color-black);
+  --button-border: var(--color-grey-2);
 }
