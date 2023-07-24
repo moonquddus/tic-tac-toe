@@ -14,7 +14,7 @@ export const gameModeMap: Record<string, GameModeConfig> = {
   'single-player': {
     id: 'single-player',
     title: 'Single-player',
-    description: 'Play against our *Ultra-Braniac-Super-Smart-Prodigious-AI 🤖 (*made in <2 hours with a dozen beers & Metallica blasting in the background)'
+    description: 'Play against our *Ultra-Braniac-Super-Smart-Prodigious-AI 🤖 (*made in <2 hours with a dozen energy drinks & Metallica blasting in the background)'
   },
   'multi-player': {
     id: 'multi-player',
