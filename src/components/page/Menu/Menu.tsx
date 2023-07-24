@@ -38,17 +38,17 @@ function Menu() {
     <div>
       <h1>Tic Tac Toe: Moon Edition</h1>
       <form>
-        <fieldset className={formStyles.fieldset}>
+        <fieldset className={formStyles.fieldset} data-testid='menu-gamemode'>
           <legend className={formStyles.legend}>Game mode:</legend>
           {Object.values(gameModeMap).map(configEntry => (
-            <label className={`${formStyles.label} ${gameMode === configEntry.id ? formStyles.activeLabel : ''}`} key={`game-mode-label-${configEntry.id}`}>
+            <label className={`${formStyles.label} ${gameMode === configEntry.id ? formStyles.activeLabel : ''}`} key={`game-mode-label-${configEntry.id}`} data-testid={`option-${configEntry.id}`}>
               <input className={formStyles.radio} type='radio' name='gameMode' value={configEntry.id} defaultChecked={gameMode === configEntry.id} onClick={() => setGameMode(configEntry.id)} /> {configEntry.title}
             </label>
           ))}
           <p className={menuStyles.description}>{gameModeMap[gameMode].description}</p>
         </fieldset>
 
-        <fieldset className={formStyles.fieldset}>
+        <fieldset className={formStyles.fieldset} data-testid='menu-variation'>
           <legend className={formStyles.legend}>Variation:</legend>
           {Object.values(variationMap).map(configEntry => (
             <label className={`${formStyles.label} ${variation === configEntry.id ? formStyles.activeLabel : ''}`} key={`variation-label-${configEntry.id}`}>
@@ -58,7 +58,7 @@ function Menu() {
           <p className={menuStyles.description}>{variationMap[variation].description}</p>
         </fieldset>
 
-        <fieldset className={formStyles.fieldset}>
+        <fieldset className={formStyles.fieldset}  data-testid='menu-winmode'>
           <legend className={formStyles.legend}>Win condition:</legend>
           {Object.values(winModeMap).map(configEntry => (
             <label className={`${formStyles.label} ${winMode === configEntry.id ? formStyles.activeLabel : ''}`} key={`win-mode-label-${configEntry.id}`}>
