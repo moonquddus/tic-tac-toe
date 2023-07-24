@@ -20,6 +20,7 @@
 }
 
 .label {
+  z-index: 5;
   font-size: 1.2rem;
   overflow: hidden;
   cursor: pointer;
@@ -56,10 +57,17 @@
   color: var(--color-white);
 }
 
+/* Firefox does not support :has yet, booooo */
+.label.activeLabel {
+  cursor: default;
+  background: var(--color-green-1);
+  color: var(--color-white);
+}
+
 .radio {
+  z-index: 0;
   position: absolute;
-  top: -100000px;
-  right: -100000px;
+  clip-path: polygon(0 0);
 }
 
 @media (max-width: 400px) {

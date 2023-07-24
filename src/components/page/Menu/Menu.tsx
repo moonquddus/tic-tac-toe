@@ -41,7 +41,7 @@ function Menu() {
         <fieldset className={formStyles.fieldset}>
           <legend className={formStyles.legend}>Game mode:</legend>
           {Object.values(gameModeMap).map(configEntry => (
-            <label className={formStyles.label} key={`game-mode-label-${configEntry.id}`}>
+            <label className={`${formStyles.label} ${gameMode === configEntry.id ? formStyles.activeLabel : ''}`} key={`game-mode-label-${configEntry.id}`}>
               <input className={formStyles.radio} type='radio' name='gameMode' value={configEntry.id} defaultChecked={gameMode === configEntry.id} onClick={() => setGameMode(configEntry.id)} /> {configEntry.title}
             </label>
           ))}
@@ -51,7 +51,7 @@ function Menu() {
         <fieldset className={formStyles.fieldset}>
           <legend className={formStyles.legend}>Variation:</legend>
           {Object.values(variationMap).map(configEntry => (
-            <label className={formStyles.label} key={`variation-label-${configEntry.id}`}>
+            <label className={`${formStyles.label} ${variation === configEntry.id ? formStyles.activeLabel : ''}`} key={`variation-label-${configEntry.id}`}>
               <input className={formStyles.radio} type='radio' name='variation' value={configEntry.id} defaultChecked={variation === configEntry.id} onClick={() => setVariation(configEntry.id)} /> {configEntry.title}
             </label>
           ))}
@@ -61,7 +61,7 @@ function Menu() {
         <fieldset className={formStyles.fieldset}>
           <legend className={formStyles.legend}>Win condition:</legend>
           {Object.values(winModeMap).map(configEntry => (
-            <label className={formStyles.label} key={`win-mode-label-${configEntry.id}`}>
+            <label className={`${formStyles.label} ${winMode === configEntry.id ? formStyles.activeLabel : ''}`} key={`win-mode-label-${configEntry.id}`}>
               <input className={formStyles.radio} type='radio' name='winMode' value={configEntry.id} defaultChecked={winMode === configEntry.id} onClick={() => setWinMode(configEntry.id)} /> {configEntry.title}
             </label>
           ))}
