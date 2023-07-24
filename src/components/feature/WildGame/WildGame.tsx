@@ -39,7 +39,7 @@ function WildGame(){
           <fieldset className={formStyles.fieldset}>
             <legend className={formStyles.legend}>Choose a symbol:</legend>
             {getAllSymbols().map(symbol => (
-              <label className={formStyles.label} key={`symbol-label-${symbol}`}>
+              <label className={`${formStyles.label} ${symbol === selectedSymbol ? formStyles.activeLabel : ''}`} key={`symbol-label-${symbol}`}>
                 <input
                   className={formStyles.radio}
                   type='radio' 
