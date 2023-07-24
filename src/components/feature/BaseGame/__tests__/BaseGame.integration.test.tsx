@@ -14,6 +14,10 @@ import { winModeState } from '../../../../lib/atoms/winModeState'
 
 const {NOUGHT, CROSS} = TIC_TAC_TOE_SYMBOL
 
+beforeEach(() => {
+  jest.clearAllMocks()
+})
+
 describe('playing turns on the grid', () => {
   it('should place down a symbol on the grid when you make a move', () => {
     const onChange = jest.fn()
@@ -237,20 +241,20 @@ describe('smart computer moves', () => {
 
   it('should prevent itself from getting three-in-a-row in misere mode', () => {
     const grid = createWinnableGridForCrosses()
-    const makeComputerTurn = useComputerPlayer(grid, [CROSS], 'standard')
+    const makeComputerTurn = useComputerPlayer(grid, [CROSS], 'misere')
     const onChange = jest.fn()
 
     const initializeState = ({set}: MutableSnapshot) => {
+      set(winModeState, 'misere')
       set(gridState, grid)
     }
 
     render(
       <RecoilRoot initializeState={initializeState}>
-        <RecoilObserver node={gridState} onChange={onChange} />
+        <RecoilObserver node={gameState} onChange={onChange} />
         <BaseGame symbol={NOUGHT} onComputerTurn={makeComputerTurn} />
       </RecoilRoot>
     )
-    // Middle-left should NOT be a cross, else CPU would lose
     expect(onChange).not.toHaveBeenCalledWith([
       [NOUGHT, null, null],
       [CROSS, CROSS, CROSS],

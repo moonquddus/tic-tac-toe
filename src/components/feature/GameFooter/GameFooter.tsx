@@ -5,6 +5,10 @@ import { useGame } from '../../../lib/hooks/useGame'
 import { useGrid } from '../../../lib/hooks/useGrid'
 import { MouseEventHandler } from 'react'
 
+beforeEach(() => {
+  jest.clearAllMocks()
+})
+
 function GameFooter(){
   const navigate = useNavigate()
   const { resetGame } = useGame()
@@ -24,7 +28,7 @@ function GameFooter(){
 
   return (
     <footer className={styles.footer}>
-      <Button onClick={onRestartClick} variation='primary'>Restart game</Button>
+      <Button onClick={onRestartClick} variation='primary' data-testid='reset-button'>Restart game</Button>
       <Button onClick={onExitButtonClick} variation='secondary'>Exit to menu</Button>
     </footer>
   )

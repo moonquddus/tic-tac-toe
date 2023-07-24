@@ -25,7 +25,7 @@ The following was used to develop this application
 
 ### Testing
 
-Run `npm test` to run all tests. There should be 8 test suites, 37 tests, and 3 snapshots.
+Run `npm test` to run the test suites. You may need to tap `a` afterwards to make sure it runs all tests. There should be 8 test suites, 37 tests, and 3 snapshots.
 
 ### Documentation
 

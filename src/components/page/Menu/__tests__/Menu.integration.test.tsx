@@ -4,6 +4,10 @@ import { router } from '../../../../lib/router'
 import { fireEvent, screen, within } from '@testing-library/react'
 import { gameModeState } from '../../../../lib/atoms/gameModeState'
 
+beforeEach(() => {
+  jest.clearAllMocks()
+})
+
 describe('rendering from config', () => {
   it('should render all game mode options', () => {
     renderWithDefaultRecoil(<RouterProvider router={router} />)
