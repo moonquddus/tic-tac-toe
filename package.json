@@ -7,6 +7,10 @@
     "url": "https://github.com/moonquddus"
   },
   "homepage": "https://moonquddus.github.io/tic-tac-toe",
+  "engines" : { 
+    "npm" : ">=9.5.0",
+    "node" : ">=18.15.0"
+  },
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
