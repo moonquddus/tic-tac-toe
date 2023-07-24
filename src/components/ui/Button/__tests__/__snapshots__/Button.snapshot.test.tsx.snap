@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button label should render children as Button text 1`] = `
+<body>
+  <div>
+    <button
+      class="button undefined"
+      data-variation="primary"
+    >
+      Hello I am a button
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Variations should render a primary button 1`] = `
+<body>
+  <div>
+    <button
+      class="button undefined"
+      data-variation="primary"
+    >
+      Primary button
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Variations should render a secondary button 1`] = `
+<body>
+  <div>
+    <button
+      class="button undefined"
+      data-variation="secondary"
+    >
+      Secondary button
+    </button>
+  </div>
+</body>
+`;
