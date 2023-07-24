@@ -1,12 +1,12 @@
 import { checkMisereWinCondition, checkStandardWinCondition, findGameCompletingTurns } from '../gameUtils'
-import { createPartiallyFilledGrid, createWinnableGridForBoth, createWinningGrid } from '../__fixtures__/grid.fixtures'
+import { createPartiallyFilledGrid, createWinnableGridForBoth, createWinningDiagGrid } from '../__fixtures__/grid.fixtures'
 import { TIC_TAC_TOE_SYMBOL } from '../../model'
 
 const { NOUGHT, CROSS } = TIC_TAC_TOE_SYMBOL
 
 describe('checkStandardWinCondition', () => {
   it('should declare a winner for Player 1', () => {
-    const grid = createWinningGrid()
+    const grid = createWinningDiagGrid()
     const currentPlayerTurn = 1
     expect(checkStandardWinCondition({ grid, currentPlayerTurn})).toStrictEqual({
       winner: 1,
@@ -25,7 +25,7 @@ describe('checkStandardWinCondition', () => {
 
 describe('checkMisereWinCondition', () => {
   it('should declare a winner for Player 2 instead of Player 1', () => {
-    const grid = createWinningGrid()
+    const grid = createWinningDiagGrid()
     const currentPlayerTurn = 1
     expect(checkMisereWinCondition({ grid, currentPlayerTurn})).toStrictEqual({
       winner: 2,
