@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 import { ReactElement, useEffect } from 'react'
 import { RecoilRoot, RecoilValue, useRecoilValue } from 'recoil'
 
-export function renderWithRecoil(ui: ReactElement){
+export function renderWithDefaultRecoil(ui: ReactElement){
   return render(
     <RecoilRoot>
       {ui}

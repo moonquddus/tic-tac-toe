@@ -71,7 +71,7 @@ function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
   }
 
   return (
-    <GameGrid grid={grid} onCellClick={completeTurn} />
+    <GameGrid grid={grid} onCellClick={completeTurn} data-testid='game-grid' />
   )
 }
 

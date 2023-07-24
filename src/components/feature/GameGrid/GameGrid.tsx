@@ -9,7 +9,7 @@ export interface GameGridProps {
   onCellClick: (x: number, y: number) => void
 }
 
-function GameGrid({grid, onCellClick}: GameGridProps) {
+function GameGrid({grid, onCellClick, ...data}: GameGridProps) {
   const { completingLine } = useRecoilValue(gameState)
 
   const winningCoordinates = useMemo(() => {
@@ -52,7 +52,7 @@ function GameGrid({grid, onCellClick}: GameGridProps) {
   }
 
   return (
-    <div className={styles.grid} role='grid' tabIndex={-1}>
+    <div className={styles.grid} role='grid' tabIndex={-1} {...data}>
       {grid.map((row, rowKey) => (
         <div role='row' aria-rowindex={rowKey} className={styles.row} key={`row-${rowKey}`} tabIndex={-1}>
           {row.map((cellValue, colKey) => (
@@ -60,6 +60,7 @@ function GameGrid({grid, onCellClick}: GameGridProps) {
               role='gridcell'
               aria-rowindex={rowKey}
               aria-colindex={colKey}
+              data-testid='grid-cell'
               tabIndex={0} 
               className={`${styles.cell} ${cellValue === null ? styles.emptyCell : ''} ${isWinningCoordinate(rowKey, colKey) ? styles.winningCell : ''}`} 
               key={`cell-${rowKey}-${colKey}`} 

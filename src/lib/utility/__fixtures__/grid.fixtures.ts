@@ -1,5 +1,6 @@
 import { GridType } from '../../atoms/gridState'
 import { TIC_TAC_TOE_SYMBOL } from '../../model'
+import { cloneGrid } from '../gridUtils'
 
 const {NOUGHT, CROSS} = TIC_TAC_TOE_SYMBOL
 
@@ -81,4 +82,10 @@ export function createDrawnGrid(): GridType {
     [NOUGHT, NOUGHT, CROSS],
     [CROSS, NOUGHT, NOUGHT],
   ]
+}
+
+export function manuallyInjectIntoGrid(grid: GridType, row: number, col: number, symbol: TIC_TAC_TOE_SYMBOL): GridType {
+  const newGrid = cloneGrid(grid)
+  newGrid[row][col] = symbol
+  return newGrid
 }
