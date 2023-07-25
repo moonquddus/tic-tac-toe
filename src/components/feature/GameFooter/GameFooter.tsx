@@ -5,10 +5,6 @@ import { useGame } from '../../../lib/hooks/useGame'
 import { useGrid } from '../../../lib/hooks/useGrid'
 import { MouseEventHandler } from 'react'
 
-beforeEach(() => {
-  jest.clearAllMocks()
-})
-
 function GameFooter(){
   const navigate = useNavigate()
   const { resetGame } = useGame()
