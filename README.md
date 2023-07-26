@@ -29,7 +29,6 @@ Run `npm test` to run the test suites. You may need to tap `a` afterwards to mak
 
 ### Documentation
 
-- Go to `docs/index.md` to view a summary doc of my implementation
-- There is also `docs/dev-notes.md` which contains an unabridged version of my notes. Not necessary, but entirely for your reading pleasure
+Go to `documentation.md` to view a summary doc of my implementation
 
 Thanks for playing this game! There is no licence, this codebase is proprietary. Please ask before using this code. And no, you may not use any of this code if you are completing the same technical challenge.

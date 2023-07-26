@@ -1,3 +1,0 @@
-# Dev notes
-
-- Hello devs
