@@ -2,7 +2,7 @@
 
 ## How to play
 
-You have to options:
+You have two options:
 
 1. Visit https://moonquddus.github.io/tic-tac-toe from your web browser
 2. Follow the instructions below in running the application in your local environment
