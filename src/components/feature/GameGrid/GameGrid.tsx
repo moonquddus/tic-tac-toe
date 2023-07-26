@@ -10,6 +10,8 @@ export interface GameGridProps {
 }
 
 function GameGrid({grid, onCellClick, ...data}: GameGridProps) {
+  // this is for highlighting a winning combo
+  // one limitation: it doesn't highlight each combo if you managed to get 2 three-in-a-rows
   const { completingLine } = useRecoilValue(gameState)
 
   const winningCoordinates = useMemo(() => {
@@ -46,6 +48,7 @@ function GameGrid({grid, onCellClick, ...data}: GameGridProps) {
   }
   const cellKeyHandler = (event: KeyboardEvent<HTMLDivElement>, ...args: ClickHandlerArgs) => {
     // Make it a11y-friendly - support Enter & Space
+    // TODO: support arrow keys to move around the grid instead of having to tab though each one
     event.preventDefault()
     if (['Enter', ' '].includes(event.key))
       cellClickHandler(...args)

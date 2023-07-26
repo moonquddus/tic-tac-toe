@@ -22,7 +22,8 @@ export function checkStandardWinCondition({grid, currentPlayerTurn}: WinConditio
     completingLine,
   }
 }
-
+// These two functions aren't that different...
+// But it future-proofs it for further win conditions
 export function checkMisereWinCondition({grid, currentPlayerTurn}: WinConditionFunctionPayload): WinConditionReturnType {
   const completingLine = getCompleteLine(grid)
   if (completingLine === null) return completingLine

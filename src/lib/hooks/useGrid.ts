@@ -15,6 +15,7 @@ export function useGrid(){
       const newGrid = insertValueIntoGrid(grid, row, col, symbol)
       setGrid(newGrid)
     } catch(err){
+      // TODO: the error is caught, but I need to think about how the app can continue gracefully
       console.error(err)
     }
   }
@@ -25,7 +26,7 @@ export function useGrid(){
     }
 
     if (grid[row][col] !== null){
-      throw new Error('Invalid coordinates. Cell is already populated')
+      throw new Error('Invalid coordinates. Cell is already populated.')
     }
   
     const newGrid = cloneGrid(grid)

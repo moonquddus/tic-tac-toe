@@ -1,4 +1,4 @@
-/* Common types and enums, quick helpers go here */
+/* Common types and enums, helpers go here */
 
 export enum TIC_TAC_TOE_SYMBOL {
   NOUGHT = 'O',

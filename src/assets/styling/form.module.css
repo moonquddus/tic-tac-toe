@@ -1,3 +1,5 @@
+/* I had a choice between keeping this as a module or just making a normalised css file*/
+/* Ended up making this a module so there's more flexibility in how the forms can look in the future */
 .fieldset {
   margin: 0 0 15px;
   padding: 0 0 15px;
@@ -67,6 +69,8 @@
 .radio {
   z-index: 0;
   position: absolute;
+  /* this is important for a11y */
+  /* we don't want it to look like a radio, but we want to hide it while still being usable */
   clip-path: polygon(0 0);
 }
 

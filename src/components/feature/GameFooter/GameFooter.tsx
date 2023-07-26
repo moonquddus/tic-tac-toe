@@ -17,7 +17,7 @@ function GameFooter(){
   }
 
   const onExitButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
-    // TODO (someday...): add a warning modal if you're about to leave in the middle of a game
+    // TODO: add a warning modal if you're about to leave in the middle of a game
     event.preventDefault()
     navigate('/')
   }

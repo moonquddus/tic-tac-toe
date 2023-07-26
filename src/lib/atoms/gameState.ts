@@ -1,6 +1,8 @@
 import { atom } from 'recoil'
 import { CompleteLinePayload } from '../model'
 
+// TODO: implement a waiting state for CPU
+// TODO: make the interface a bit stricter - completingLine & winner should be null at the same time
 export type GameStateType = {
   turn: number
   gameStatus: 'active' | 'waiting' | 'victory' | 'draw'

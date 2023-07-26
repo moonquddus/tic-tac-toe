@@ -10,6 +10,8 @@ export type GridCellType = TIC_TAC_TOE_SYMBOL | null
 
 export const GRID_STATE_ID = 'gridState'
 
+// if I were to change the type to ArraySize<..., 3> and change this default state
+// that is technically all I need to do to support a different grid size
 export const gridState = atom<GridType>({
   key: GRID_STATE_ID,
   default: [

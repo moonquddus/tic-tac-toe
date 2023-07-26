@@ -12,7 +12,7 @@ export function useComputerPlayer(grid: GridType, availableSymbols: TIC_TAC_TOE_
   }
 
   const makeTurn = (): TurnActionType => {
-    // TODO: I think it might be kinda cool to make the player wait a bit with a setTimeout
+    // TODO: I think it might be a better experience to make the player wait a bit with a random setTimeout
     // Makes the CPU seem more realistic
     const takeInstructions = winModeToCPUInstructions[winMode](grid, availableSymbols)
     return takeInstructions()

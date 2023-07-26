@@ -5,6 +5,11 @@ import { VariationType } from './atoms/variationState'
 import { WinConditionFunctionPayload, WinConditionReturnType, checkMisereWinCondition, checkStandardWinCondition } from './utility/gameUtils'
 import { WinModeType } from './atoms/winModeState'
 
+/*
+ * The core of our additional game features
+ * If we want to add another mode or variation, we start from here
+ */
+
 type GameModeConfig = {
   id: GameModeType
   title: string

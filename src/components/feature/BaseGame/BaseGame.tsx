@@ -24,6 +24,7 @@ function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
   const winMode = useRecoilValue(winModeState)
   const hasGameBeenCompleted = winModeMap[winMode].validation
 
+  // if we run out of turns, then declare a draw
   useEffect(() => {
     if (turn > Math.pow(grid.length, 2) && gameStatus === 'active'){
       updateGame({
@@ -38,6 +39,7 @@ function BaseGame({symbol, onComputerTurn}: BaseGameProps) {
     }
   }, [turn])
 
+  // check for a winning combo whenever the grid changes
   useEffect(() => {
     if (gridIsEmpty) return
 
